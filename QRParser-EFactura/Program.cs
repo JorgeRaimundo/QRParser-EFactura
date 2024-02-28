@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-const string fact1 = "A:501556109*B:213114755*C:PT*D:FR*E:N*F:20231120*G:VD0 A/93446*H:JFN4TKFM-93446*I1:PT*I2:0.00*I3:0.00*I4:0.00*I5:0.00*I6:0.00*I7:41.46*I8:9.54*L:0.00*M:0*N:9.54*O:51.00*P:0*Q:a7UN*R:122";
+const string InputFile = "in.txt";
+const string OutputFile = "out.json";
 
 Dictionary<string,string> ElementNames = new() {
     {"A", "Emitente"},
@@ -31,10 +32,20 @@ Dictionary<string,string> ElementNames = new() {
     {"S", "S ???"},
 };
 
-List<string> elements = [.. fact1.Split('*')];
+if (!File.Exists(InputFile)) {
+    Console.WriteLine("The input file 'in.txt' does not exist");
+    return;
+}
 
-foreach (var element in elements)
+var fileLines = File.ReadAllLines(InputFile).ToList();
+
+foreach (var line in fileLines)
 {
-    List<string> elementParts = [.. element.Split(':')];
-    Console.WriteLine($"{ElementNames[elementParts[0]]}: {elementParts[1]}");
+    List<string> elements = [.. line.Split('*')];
+
+    foreach (var element in elements)
+    {
+        List<string> elementParts = [.. element.Split(':')];
+        Console.WriteLine($"{ElementNames[elementParts[0]]}: {elementParts[1]}");
+    }
 }
