@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="QRParser_EFactura.Controls.ParsedCodeElement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QRParser_EFactura.Controls"
+             d:DataContext="{d:DesignInstance Type=local:ParsedCodeElement}"
+             mc:Ignorable="d" Height="30"
+             d:DesignHeight="30" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <Image x:Key="ButtonImage" Source="../Assets/copy-icon.png"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label
+            Grid.Column="0"
+            Margin="0,0,0,0"
+            x:Name="DescriptionLabel"
+            Content="{Binding LabelContent}"
+            VerticalContentAlignment="Center"/>
+        <Button
+            Grid.Column="0"
+            Margin="0"
+            x:Name="CopyButton"
+            Click="CopyButton_Click"
+            Height="20"
+            Width="20"
+            HorizontalAlignment="Right"
+            Background="Transparent"
+            Foreground="LightGray"
+            BorderThickness="0"
+            Content="{StaticResource ResourceKey=ButtonImage}"/>
+    </Grid>
+</UserControl>
